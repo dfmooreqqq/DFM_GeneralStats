@@ -8,6 +8,15 @@
 #             type = c("highest", "central"),
 #             tol = .Machine$double.eps^0.5)
 
+packages <- c("binom")
+packages <- lapply(packages, FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+        install.packages(x)
+        library(x, character.only = TRUE)
+    }
+})
+
+
 labels = c(560,520,480,440,400,360,320,280,240,200,160,120,80)
 passes = c(0,1,5,32,89,144,207,228,239,239,239,239,239)
 N = 239

@@ -1,3 +1,11 @@
+packages <- c("plyr")
+packages <- lapply(packages, FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+        install.packages(x)
+        library(x, character.only = TRUE)
+    }
+})
+
 test<-data.frame(count = as.integer(character()),
                  size =  as.integer(character()),
                  range =  as.integer(character())
@@ -21,6 +29,5 @@ for (j in 1:maxsamplesize){
 
 test$greaterthan0.9<-test$range>0.9*(range(a)[2] - range(a)[1])
 
-library(plyr)
 summarytest<-ddply(test, .(size), summarize, likelihood = sum(greaterthan0.9)/simulations)
 plot(likelihood~size, data = summarytest)

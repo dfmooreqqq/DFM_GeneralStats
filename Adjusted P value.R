@@ -1,4 +1,10 @@
-require(graphics)
+packages <- c("graphics")
+packages <- lapply(packages, FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+        install.packages(x)
+        library(x, character.only = TRUE)
+    }
+})
 
 set.seed(123)
 x <- rnorm(50, mean = c(rep(0, 25), rep(3, 25)))
