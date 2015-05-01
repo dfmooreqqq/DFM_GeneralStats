@@ -11,7 +11,7 @@ test<-data.frame(count = as.integer(character()),
                  range =  as.integer(character())
                  )
 
-a = rbinom(10000, size=5, p=0.25)
+a = rnorm(500)
 maxsamplesize = 200
 simulations = 200
 
